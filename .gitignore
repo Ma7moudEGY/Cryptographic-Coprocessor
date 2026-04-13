@@ -7,7 +7,6 @@
 *.aws
 *.wsw
 *.wsp
-*.adf
 *.cfg
 *.LIB
 *.log
