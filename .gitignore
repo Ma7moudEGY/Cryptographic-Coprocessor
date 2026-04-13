@@ -1,0 +1,20 @@
+# Active-HDL generated files
+*.mgf
+*.epr
+*.erf
+*.cmd
+*.lib~
+*.aws
+*.wsw
+*.wsp
+*.adf
+*.cfg
+*.LIB
+*.log
+*.set
+compilation.order
+synthesis.order
+
+# Compiled output folders
+compile/
+log/
