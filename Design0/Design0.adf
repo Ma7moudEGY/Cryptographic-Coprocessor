@@ -28,7 +28,11 @@ UCF=
 
 [HierarchyViewer]
 SortInfo=u
+<<<<<<< Updated upstream
 HierarchyInformation=register_file|rtl|0     
+=======
+HierarchyInformation=shiftertb|struct|0 
+>>>>>>> Stashed changes
 ShowHide=ShowTopLevel
 Selected=
 
@@ -43,6 +47,7 @@ Selected=
 /full_adder.vhd=-1
 /N_bit_adder.vhd=-1
 /comb_logic.vhd=-1
+/shifterTB.vhd=-1
 
 [Files.Data]
 .\src\ALU.vhd=VHDL Source Code
@@ -55,4 +60,5 @@ Selected=
 .\src\full_adder.vhd=VHDL Source Code
 .\src\N_bit_adder.vhd=VHDL Source Code
 .\src\comb_logic.vhd=VHDL Source Code
+.\src\shifterTB.vhd=VHDL Source Code
 
