@@ -9,9 +9,13 @@ entity comb_logic is
     );
 end entity;
 
-architecture rtl of comb_logic is
+architecture rtl of comb_logic is 
 
-    -- 1.  Џ—нЁ «б№ Components (ё»б «б№ begin)
+	signal out1_LUT : std_logic_vector(15 downto 0);
+    signal out2_ALU : std_logic_vector(15 downto 0);
+    signal out3_shf : std_logic_vector(15 downto 0);
+    signal LUT_out  : std_logic_vector(7 downto 0);
+
     component non_linear_lookup is
         port (
             LUT_IN  : in std_logic_vector(7 downto 0);
@@ -37,22 +41,16 @@ architecture rtl of comb_logic is
         );
     end component;  
 
-    -- 2.  Џ—нЁ «б√”б«я «бѕ«ќбн… (Signals)
-    signal out1_LUT : std_logic_vector(15 downto 0);
-    signal out2_ALU : std_logic_vector(15 downto 0);
-    signal out3_shf : std_logic_vector(15 downto 0);
-    signal LUT_out_sig : std_logic_vector(7 downto 0); -- ”бя бб№ 8 »  » жЏ «б№ LUT
-
 begin   
 
     LUT_unit: non_linear_lookup
     port map(
-        LUT_IN  => A_BUS(7 downto 0), -- б«“г дЌѕѕ «б№ 8 » 
-        LUT_OUT => LUT_out_sig
+        LUT_IN  => A_BUS(7 downto 0),
+        LUT_OUT => LUT_out
     );
     
-    --  ћгнЏ «б№ 16 »  » жЏ «б№ LUT
-    out1_LUT <= A_BUS(15 downto 8) & LUT_out_sig;
+   
+    out1_LUT <= A_BUS(15 downto 8) & LUT_out;
     
     SHIFT_unit: shifter
     generic map ( N => 16 )
@@ -80,7 +78,7 @@ begin
                     when "11" =>
                         RES <= out1_LUT;
                     when others =>
-                        RES <= out3_shf; -- я«д гя ж» out2_shf жен г‘ гжћжѕ…
+                        RES <= out3_shf; 
                 end case;
         end case;
     end process control_logic;
