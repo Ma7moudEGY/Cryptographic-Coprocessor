@@ -43,6 +43,7 @@ Selected=
 /full_adder.vhd=-1
 /N_bit_adder.vhd=-1
 /comb_logic.vhd=-1
+/shifterTB.vhd=-1
 /TB_ALU.vhd=-1
 
 [Files.Data]
@@ -56,5 +57,6 @@ Selected=
 .\src\full_adder.vhd=VHDL Source Code
 .\src\N_bit_adder.vhd=VHDL Source Code
 .\src\comb_logic.vhd=VHDL Source Code
+.\src\shifterTB.vhd=VHDL Source Code
 .\src\TB_ALU.vhd=VHDL Source Code
 
