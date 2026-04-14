@@ -46,15 +46,10 @@ begin
 			-- Initial values
    
 			En  <= '0';
-    
 			Rst <= '0';
-    
 			Ra  <= "0000";
-   
 			Rb  <= "0000";
-   
 			Rd  <= "0000";
-   
 			RES <= x"0000";	
 			
 			--Step_1 : Writing_Operation => Writing in register(1)  
