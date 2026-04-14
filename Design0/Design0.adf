@@ -28,11 +28,9 @@ UCF=
 
 [HierarchyViewer]
 SortInfo=u
-<<<<<<< Updated upstream
-HierarchyInformation=shiftertb|struct|0      
-=======
-HierarchyInformation=shiftertb|struct|0 
->>>>>>> Stashed changes
+
+HierarchyInformation=shiftertb|struct|0       
+
 ShowHide=ShowTopLevel
 Selected=
 
