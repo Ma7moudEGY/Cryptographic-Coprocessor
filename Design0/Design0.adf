@@ -51,6 +51,7 @@ Selected=
 /comb_logic.vhd=-1
 /shifterTB.vhd=-1
 /TB_ALU.vhd=-1
+/register_TB.vhd=-1
 
 [Files.Data]
 .\src\comb_logic_TB.vhd=VHDL Source Code
@@ -71,4 +72,5 @@ Selected=
 .\src\comb_logic.vhd=VHDL Source Code
 .\src\shifterTB.vhd=VHDL Source Code
 .\src\TB_ALU.vhd=VHDL Source Code
+.\src\register_TB.vhd=VHDL Source Code
 
