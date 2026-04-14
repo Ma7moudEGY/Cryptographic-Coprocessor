@@ -11,6 +11,7 @@ end entity;
 architecture rtl of half_adder is
 begin
 	
-	-- TODO
+	s <= x xor y;
+	cout <= x and y;
 	
 end architecture;
