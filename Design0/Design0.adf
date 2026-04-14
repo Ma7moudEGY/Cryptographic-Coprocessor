@@ -29,7 +29,7 @@ UCF=
 [HierarchyViewer]
 SortInfo=u
 <<<<<<< Updated upstream
-HierarchyInformation=register_file|rtl|0     
+HierarchyInformation=shiftertb|struct|0      
 =======
 HierarchyInformation=shiftertb|struct|0 
 >>>>>>> Stashed changes
