@@ -23,15 +23,45 @@ begin
     begin  		 
         A_BUS_TB <= x"0005"; 
         B_BUS_TB <= x"000E"; 
-        CTRL_TB  <= "0000";  
+        CTRL_TB  <= "0000";   -- A+B
+        wait for 10 ns;	
+		
+		CTRL_TB <= "0001";	  -- A-B
+		wait for 10 ns;
+		
+		CTRL_TB <= "0010";	  -- A&B
+		wait for 10 ns;
+		
+		CTRL_TB <= "0011";	  -- A|B
+		wait for 10 ns;
+		
+		CTRL_TB <= "0100";	  -- A^B
+		wait for 10 ns;
+		
+		CTRL_TB <= "0101";	  -- !A
+		wait for 10 ns;
+		
+		CTRL_TB <= "0110";	  -- A
+		wait for 10 ns;
+		
+		CTRL_TB <= "0111";	  -- nop
+		wait for 10 ns;
+        
+        --B_BUS_TB <= x"ABCD"; 
+        CTRL_TB  <= "1000";   -- ROR8
+        wait for 10 ns;
+		
+		CTRL_TB  <= "1001";   -- ROR4
+        wait for 10 ns;
+		
+		CTRL_TB  <= "1010";   -- SLL8
         wait for 10 ns;
         
-        B_BUS_TB <= x"ABCD"; 
-        CTRL_TB  <= "1000";  
-        wait for 10 ns;
-        
-        A_BUS_TB <= x"FF01"; 
-        CTRL_TB  <= "1011";  
+        --A_BUS_TB <= x"FF01"; 				   			   
+        CTRL_TB  <= "1011";   -- LUT
+        wait for 10 ns;	
+		
+		CTRL_TB  <= "1100";   -- x"0000"
         wait for 10 ns;
         
         wait;
