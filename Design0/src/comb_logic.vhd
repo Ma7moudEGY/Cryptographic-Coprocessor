@@ -70,7 +70,7 @@ begin
     
     control_logic: process(CTRL, out1_LUT, out2_ALU, out3_shf) is
     begin
-        case CTRL(3 downto 3) is
+        case CTRL(3 downto 3) is		
             when "0" => 
                 RES <= out2_ALU;
             when others => 
