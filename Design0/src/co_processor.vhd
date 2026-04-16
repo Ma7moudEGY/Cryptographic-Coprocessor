@@ -17,7 +17,7 @@ architecture rtl of co_processor is
     component register_file is
         port (
             clk		: in  std_logic;
-            reset   : in  std_logic;
+            Rst   	: in  std_logic;
             en		: in  std_logic;
             RES    	: in  std_logic_vector(15 downto 0);
             Ra     	: in  std_logic_vector(3 downto 0);
@@ -28,12 +28,12 @@ architecture rtl of co_processor is
         );
     end component;
 
-    component CLU is
+    component comb_logic is
         port (
             A_BUS  	: in  std_logic_vector(15 downto 0);
             B_BUS  	: in  std_logic_vector(15 downto 0);
             CTRL   	: in  std_logic_vector(3 downto 0);
-            RESULT 	: out std_logic_vector(15 downto 0)
+            RES 	: out std_logic_vector(15 downto 0)
         );
     end component;
 
@@ -45,11 +45,9 @@ architecture rtl of co_processor is
     signal rd_reg   : std_logic_vector(3 downto 0);
 
 begin
-
-    -- TODO: port map register_file	
 	register_16x16: register_file port map (
         clk   => clk, 
-        reset => rst, 
+        Rst   => rst, 
         en    => write_en, 
         RES   => result, 
         Ra    => Ra, 
@@ -58,14 +56,14 @@ begin
         SRCa  => src_a, 
         SRCb  => src_b
     );
-    -- TODO: port map structural_VHDL
-	combinational_logic: CLU port map (
+
+	combinational_logic: comb_logic port map (
         A_BUS  => src_a,
         B_BUS  => src_b, 
         CTRL   => ctrl_reg, 
-        RESULT => result
+        RES    => result
     );
-    -- TODO: input register process (latch CTRL and Rd on clock edge)  
+  
 	process(clk, rst)
 	begin
 		if (rst = '1') then
@@ -76,7 +74,7 @@ begin
 			rd_reg 	 <= Rd;
 		end if;
 	end process;
-    -- TODO: write_en logic (disable on NOP) 
+
 	with ctrl_reg select
 		write_en <= '0' when "0111",
 					'1' when others;

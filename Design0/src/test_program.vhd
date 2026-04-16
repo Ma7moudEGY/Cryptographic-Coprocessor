@@ -18,38 +18,36 @@ architecture behaviour of test_program is
     end component;
 	
 	signal clk 	: std_logic := '0';
-    signal rst 	: std_logic := '1';
-    signal CTRL : std_logic_vector(3 downto 0) := (others => '0');
-    signal Ra 	: std_logic_vector(3 downto 0) := (others => '0');
-    signal Rb 	: std_logic_vector(3 downto 0) := (others => '0');
-    signal Rd 	: std_logic_vector(3 downto 0) := (others => '0');
+    signal rst 	: std_logic := '0';
+    signal CTRL : std_logic_vector(3 downto 0);
+    signal Ra 	: std_logic_vector(3 downto 0);
+    signal Rb 	: std_logic_vector(3 downto 0);
+    signal Rd 	: std_logic_vector(3 downto 0);
 	constant clock_period : time := 50 ns;
 	
 	begin
-		coprocessor: co_processor port map (clk  => clk,
-                                    		rst  => rst,
-                                    		CTRL => CTRL,
-                                    		Ra   => Ra,
-                                    		Rb   => Rb,
-                                    		Rd   => Rd
-                                   			);
-	clock_process :process
-    begin
-        clk <= '0';
-        wait for clock_period/2;
-        clk <= '1';
-        wait for clock_period/2;
-    end process;
+		coprocessor: co_processor
+		port map (clk  => clk,
+			      rst  => rst,
+				  CTRL => CTRL,
+                  Ra   => Ra,
+				  Rb   => Rb,
+				  Rd   => Rd
+				);
+				
+	clk <= not clk after clock_period / 2;
 					   
     stim_proc: process
     begin  
 		-- 1. Initialize and hold reset state
-        rst  <= '1';
+        --rst  <= '1';
+		wait for clock_period;
+		
         Ra   <= "0000";
-        Rb   <= "0000";
-        Rd   <= "0000";
+        Rb   <= "0001";
+        Rd   <= "0010";
         CTRL <= "0111";
-        wait for 100 ns; 
+        wait for clock_period; 
         
         rst  <= '0';
 		wait for clock_period;
