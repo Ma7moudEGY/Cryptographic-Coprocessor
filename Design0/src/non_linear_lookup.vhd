@@ -5,9 +5,7 @@ entity non_linear_lookup is
 		
 port (
 		LUT_IN	: in std_logic_vector(7 downto 0);
-		LUT_OUT	: out std_logic_vector(7 downto 0)
-	  
-		
+		LUT_OUT	: out std_logic_vector(7 downto 0)		
 	  );
 	  	  
 end entity;
@@ -17,15 +15,12 @@ architecture rtl of non_linear_lookup is
 --Deviding the input and output signals into two 4 bit signals
 signal LSI,RSI,LSO,RSO:  std_logic_vector (3 downto 0);	
 
-begin
-	
-	
+begin	
 LSI <= LUT_IN(7 downto 4);
 RSI <=LUT_IN(3 downto 0); 
 
-
 --s-box2 code
-with LSI select LSO<=	  
+with LSI select LSO <=	  
 "0001" when "0000",
 "1011" when "0001",
 "1001" when "0010",
@@ -44,10 +39,8 @@ with LSI select LSO<=
 "0000" when "1111", 
 "0000" when others ;
 
-
-
 --s-box2 code
-with RSI select RSO<=	  
+with RSI select RSO <=	  
 "1111" when "0000",
 "0000" when "0001",
 "1101" when "0010",
@@ -65,8 +58,6 @@ with RSI select RSO<=
 "1000" when "1110",
 "0110" when "1111", 
 "0000" when others;
-
-
 
 LUT_OUT<= LSO&RSO;  
 
