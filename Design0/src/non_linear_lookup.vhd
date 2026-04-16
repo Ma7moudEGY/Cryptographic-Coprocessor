@@ -2,18 +2,30 @@ library	ieee;
 use ieee.std_logic_1164.all;
 
 entity non_linear_lookup is
-	port (
+		
+port (
 		LUT_IN	: in std_logic_vector(7 downto 0);
 		LUT_OUT	: out std_logic_vector(7 downto 0)
-		);
+	  
+		
+	  );
+	  	  
 end entity;
 
-architecture rtl of non_linear_lookup is
-signal LSI,RSI,LSO,RSO:  std_logic_vector (3 downto 0);	--Deviding the input and output signals into two 4 bit signals
-begin 
+architecture rtl of non_linear_lookup is 
+
+--Deviding the input and output signals into two 4 bit signals
+signal LSI,RSI,LSO,RSO:  std_logic_vector (3 downto 0);	
+
+begin
+	
+	
 LSI <= LUT_IN(7 downto 4);
-RSI <=LUT_IN(3 downto 0);
-with LSI  select LSO<=		   -- s-box1 code
+RSI <=LUT_IN(3 downto 0); 
+
+
+--s-box2 code
+with LSI select LSO<=	  
 "0001" when "0000",
 "1011" when "0001",
 "1001" when "0010",
@@ -33,7 +45,9 @@ with LSI  select LSO<=		   -- s-box1 code
 "0000" when others ;
 
 
-with RSI  select RSO<=	  --s-box2 code
+
+--s-box2 code
+with RSI select RSO<=	  
 "1111" when "0000",
 "0000" when "0001",
 "1101" when "0010",
@@ -52,9 +66,8 @@ with RSI  select RSO<=	  --s-box2 code
 "0110" when "1111", 
 "0000" when others;
 
-LUT_OUT<= LSI&RSI;  
-	
-	
-	
-	
+
+
+LUT_OUT<= LSO&RSO;  
+
 end architecture;
