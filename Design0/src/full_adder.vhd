@@ -11,6 +11,7 @@ end entity;
 architecture rtl of full_adder is
 begin
 	
-	-- TODO
+	s <= x xor y xor cin;
+	cout <= (x and y) or (x and cin) or (y and cin);
 	
 end architecture;
