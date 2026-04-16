@@ -1,7 +1,7 @@
 library ieee;  
 use ieee.std_logic_1164.all;
 	 
-entity ‎non_linear_lookup_TB is  
+entity non_linear_lookup_TB is  
 end entity;
   
 architecture behavior of non_linear_lookup_TB is
