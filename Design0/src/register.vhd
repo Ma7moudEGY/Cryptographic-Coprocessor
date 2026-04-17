@@ -53,17 +53,12 @@ begin
 			end if;	
 		end if;	
 	end process;
-	
-	--Read_Operation
-	read_process: process
-	begin 
-		if(Rst = '1') then    
-			SRCa <= x"0000";
-			SRCb <= x"0000";
-		else 
-			SRCa <= REG_FILE(to_integer(unsigned(Ra)));	
-			SRCb <= REG_FILE(to_integer(unsigned(Rb)));
-		end if;
-	end process;
 
+	-- Asynchronous Read 
+	SRCa <= REG_FILE(to_integer(unsigned(Ra))) when Rst = '0' else
+			x"0000";
+		
+	SRCb <= REG_FILE(to_integer(unsigned(Rb))) when Rst = '0' else
+			x"0000";
+					
 end architecture rtl;

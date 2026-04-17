@@ -5,7 +5,7 @@ entity co_processor is
     port (
         clk		: in std_logic;
         rst    	: in std_logic;
-        CTRL   	: in std_logic_vector(3 downto 0);
+        CTRL   	: in std_logic_vector(3 downto 0) := "0111"; -- Start with NOP to avoid writing 0 to the Rd randomly
         Ra     	: in std_logic_vector(3 downto 0);
         Rb     	: in std_logic_vector(3 downto 0);
         Rd     	: in std_logic_vector(3 downto 0)
@@ -41,8 +41,6 @@ architecture rtl of co_processor is
     signal src_a    : std_logic_vector(15 downto 0);
     signal src_b    : std_logic_vector(15 downto 0);
     signal result   : std_logic_vector(15 downto 0);
-    signal ctrl_reg	: std_logic_vector(3 downto 0) := "0111"; -- Start with NOP to avoid writing 0 to the Rd randomly
-    signal rd_reg   : std_logic_vector(3 downto 0);
 
 begin
 	register_16x16: register_file port map (
@@ -52,7 +50,7 @@ begin
         RES   => result, 
         Ra    => Ra, 
         Rb    => Rb, 
-        Rd    => rd_reg, 
+        Rd    => Rd, 
         SRCa  => src_a, 
         SRCb  => src_b
     );
@@ -60,22 +58,11 @@ begin
 	combinational_logic: comb_logic port map (
         A_BUS  => src_a,
         B_BUS  => src_b, 
-        CTRL   => ctrl_reg, 
+        CTRL   => CTRL, 
         RES    => result
     );
-  
-	process(clk, rst)
-	begin
-		if (rst = '1') then
-			ctrl_reg <= (others => '0');
-			rd_reg 	 <= (others => '0'); 	
-		elsif (rising_edge(clk)) then
-			ctrl_reg <= CTRL;
-			rd_reg 	 <= Rd;
-		end if;
-	end process;
 
-	with ctrl_reg select
+	with CTRL select
 		write_en <= '0' when "0111",
 					'1' when others;
 
