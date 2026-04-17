@@ -47,7 +47,9 @@ begin
 	begin
 		if(rising_edge(Clk)) then  
 			if (En = '1')then 	  -- Write when En = '1'
-				REG_FILE(to_integer(unsigned(Rd))) <= RES;	
+				REG_FILE(to_integer(unsigned(Rd))) <= RES;
+				-- For debugging purposes
+				--report "Wrote " & integer'image(to_integer(unsigned(RES))) & " to " & integer'image(to_integer(unsigned(Rd)));
 			end if;	
 		end if;	
 	end process;

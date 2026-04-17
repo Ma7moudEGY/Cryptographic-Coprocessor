@@ -37,11 +37,11 @@ architecture rtl of co_processor is
         );
     end component;
 
-    signal write_en	: std_logic;
+    signal write_en	: std_logic := '1';
     signal src_a    : std_logic_vector(15 downto 0);
     signal src_b    : std_logic_vector(15 downto 0);
     signal result   : std_logic_vector(15 downto 0);
-    signal ctrl_reg	: std_logic_vector(3 downto 0);
+    signal ctrl_reg	: std_logic_vector(3 downto 0) := "0111"; -- Start with NOP to avoid writing 0 to the Rd randomly
     signal rd_reg   : std_logic_vector(3 downto 0);
 
 begin

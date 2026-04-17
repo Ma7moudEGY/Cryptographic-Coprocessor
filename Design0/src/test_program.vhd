@@ -39,20 +39,17 @@ architecture behaviour of test_program is
 					   
     stim_proc: process
     begin  
-		-- 1. Initialize and hold reset state
-        --rst  <= '1';
-		wait for clock_period;
-		
+		-- 1. Test MOV 
         Ra   <= "0000";
         Rb   <= "0001";
         Rd   <= "0010";
-        CTRL <= "0111";
+        CTRL <= "0110";
         wait for clock_period; 
         
         rst  <= '0';
 		wait for clock_period;
         
-        --- 2. Test ALU Op => ADD R5, R4, R12
+        --- 2. Test ALU Op => AND R2, R15, R14
         Ra   <= "1111"; -- 15
         Rb   <= "1110"; -- 14
         Rd   <= "0010"; -- 2
@@ -73,14 +70,14 @@ architecture behaviour of test_program is
         CTRL <= "0111"; -- NOP
         wait for clock_period;    
         
-        --- 5. Test Shift: SRL4 R13, XX, R7 (Logical Right Shift)
-        Ra   <= "1101"; -- 13
+        --- 5. Test ROR8 
+        Ra   <= "1101"; -- Igonred 
         Rb   <= "0000"; -- Ignored 
         Rd   <= "0111"; -- 7
         CTRL <= "1000";
         wait for clock_period;
         
-        --- ADD R0, R7, R10
+        --- ADD R10, R0, R7 
         Ra 	 <= "0000"; 
         Rb 	 <= "0111";
         Rd 	 <= "1010";
@@ -94,19 +91,21 @@ architecture behaviour of test_program is
         CTRL <= "0001";
         wait for clock_period;
         
-        --- 7. Test Logic: NAND R10, R1, R1
+        --- 7. Test Logic: NOT A_BUS R10, R1, R1
         Ra   <= "0001"; -- 1 
-        Rb   <= "0001"; -- 1
+        Rb   <= "0100"; -- 1
         Rd   <= "1010"; -- 10
         CTRL <= "0101";
         wait for clock_period;
         
-        --- 8. Test Data Move/Load: MOV R11, R10
-        Ra   <= "1010"; -- 10 
-        Rb   <= "0000"; -- Ignored
+        --- 8. Test No OPCODE Binded to 1100 -> OUTPUT should be 0.
+        Ra   <= "1010"; -- Ignored 
+        Rb   <= "0000"; -- Ignored 
         Rd   <= "1011"; -- 11
         CTRL <= "1100";  
         wait for clock_period;
+		
+		CTRL <= "0111";
 		
         wait;
     end process;
