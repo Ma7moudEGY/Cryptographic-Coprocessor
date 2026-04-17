@@ -55,17 +55,15 @@ begin
 	end process;
 	
 	--Read_Operation
-	read_process: process(Clk)
-	begin
-		if(rising_edge(Clk)) then  
-			if(Rst = '1') then    
-				SRCa <= x"0000";
-				SRCb <= x"0000";
-			else 
-				SRCa <= REG_FILE(to_integer(unsigned(Ra)));	
-				SRCb <= REG_FILE(to_integer(unsigned(Rb)));
-			end if;
-		end if;	
+	read_process: process
+	begin 
+		if(Rst = '1') then    
+			SRCa <= x"0000";
+			SRCb <= x"0000";
+		else 
+			SRCa <= REG_FILE(to_integer(unsigned(Ra)));	
+			SRCb <= REG_FILE(to_integer(unsigned(Rb)));
+		end if;
 	end process;
 
 end architecture rtl;

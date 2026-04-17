@@ -72,7 +72,7 @@ architecture behaviour of test_program is
         
         --- 5. Test ROR8 
         Ra   <= "1101"; -- Igonred 
-        Rb   <= "0000"; -- Ignored 
+        Rb   <= "0000";
         Rd   <= "0111"; -- 7
         CTRL <= "1000";
         wait for clock_period;
