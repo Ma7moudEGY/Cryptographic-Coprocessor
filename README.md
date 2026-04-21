@@ -16,7 +16,7 @@ A 16-bit dedicated hardware module that executes cryptographic operations alongs
 # Architecture
 ---
 **Schematic**
-<embed src="Assets\Co-Processor.pdf" type="application/pdf" width="100%" height="600px" />
+<img src="Assets\Co-Processor.png" width="100%" height="390px" />
 
 **Block diagram**
 ```
