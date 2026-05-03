@@ -43,7 +43,7 @@ signal REG_FILE : reg_array := (
 begin 
 	
 	--Write_Operation
-	write_process: process(Clk)
+	write_process: process(Clk, Rst)
 	begin	
 		if (Rst = '1') then       -- Reset Register-Files when RST = '1'
 			REG_FILE <= (others => (others => '0')); 	
