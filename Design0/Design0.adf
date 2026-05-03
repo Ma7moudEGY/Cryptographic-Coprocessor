@@ -28,7 +28,7 @@ UCF=
 
 [HierarchyViewer]
 SortInfo=u
-HierarchyInformation=
+HierarchyInformation=register_tb|rtl|0    
 ShowHide=ShowTopLevel
 Selected=
 
