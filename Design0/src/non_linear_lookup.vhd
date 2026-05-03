@@ -19,7 +19,7 @@ begin
 LSI <= LUT_IN(7 downto 4);
 RSI <=LUT_IN(3 downto 0); 
 
---s-box2 code
+--s-box code
 with LSI select LSO <=	  
 "0001" when "0000",
 "1011" when "0001",

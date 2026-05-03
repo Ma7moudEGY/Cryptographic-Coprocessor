@@ -46,9 +46,6 @@ architecture behaviour of test_program is
         CTRL <= "0110";
         wait for clock_period; 
         
-        rst  <= '0';
-		wait for clock_period;
-        
         --- 2. Test ALU Op => AND R2, R15, R14
         Ra   <= "1111"; -- 15
         Rb   <= "1110"; -- 14
@@ -106,7 +103,7 @@ architecture behaviour of test_program is
         wait for clock_period;
 		
 		CTRL <= "0111";
-		
+		rst <= '1';
         wait;
     end process;
 

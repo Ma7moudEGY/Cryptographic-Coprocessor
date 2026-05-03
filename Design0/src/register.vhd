@@ -43,9 +43,12 @@ signal REG_FILE : reg_array := (
 begin 
 	
 	--Write_Operation
-	write_process: process(Clk)
+	write_process: process(Clk, rst)
 	begin
-		if(rising_edge(Clk)) then  
+		if (rst = '1') then
+			REG_FILE <= (others => (others => '0')); 
+			
+		elsif(rising_edge(Clk)) then  
 			if (En = '1')then 	  -- Write when En = '1'
 				REG_FILE(to_integer(unsigned(Rd))) <= RES;
 				-- For debugging purposes
@@ -55,10 +58,8 @@ begin
 	end process;
 
 	-- Asynchronous Read 
-	SRCa <= REG_FILE(to_integer(unsigned(Ra))) when Rst = '0' else
-			x"0000";
+	SRCa <= REG_FILE(to_integer(unsigned(Ra)));
 		
-	SRCb <= REG_FILE(to_integer(unsigned(Rb))) when Rst = '0' else
-			x"0000";
+	SRCb <= REG_FILE(to_integer(unsigned(Rb)));
 					
 end architecture rtl;
